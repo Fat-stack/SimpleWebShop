@@ -18,11 +18,11 @@ public class ShoppingCart {
 
 
     // ------- CONSTRUCTORS -------
-    private ShoppingCart() throws IOException, ClassNotFoundException {}
+    private ShoppingCart(){}
 
     // ------- METHODS -------
 
-    public static ShoppingCart getInstance() throws IOException, ClassNotFoundException {
+    public static ShoppingCart getInstance(){
         if (shoppingCart == null){
             shoppingCart = new ShoppingCart();
         }

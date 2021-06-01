@@ -21,8 +21,6 @@ public class CartController {
     private float totalPriceSum;
 
 
-
-    // istället för @Autowired ! avgör vad som är bäst senare.
     private final ProductRepository productRepository;
 
     public CartController(ProductRepository productRepository) {
@@ -50,9 +48,9 @@ public class CartController {
             for (Product item: tempList) {
 
                 if (item.getProductcode().equals(product.getProductcode())){
-                        System.out.println("EQUALS");
+
                     item.setQuantity(item.getQuantity() + 1 );
-                        System.out.println(item.getQuantity());
+
                     shoppingCart.setShoppingCartList(tempList);
 
                     return "redirect:/products";
@@ -84,13 +82,13 @@ public class CartController {
             return "redirect:/cart";
         }
         if (shoppingCart.getShoppingCartList().isEmpty()){
-            System.out.println("CART EMPTY");
+
             String strEmpty =" Your Cart contains no Items";
             model.addAttribute("cartIsEmpty",strEmpty);
 
         }
         if (!(shoppingCart.getShoppingCartList().isEmpty())){
-            System.out.println("CART Not emty");
+
             String strNotEmpty =" Your Cart contains Items";
             model.addAttribute("cartIsNotEmpty",strNotEmpty);
 
@@ -131,10 +129,7 @@ public class CartController {
                 return "redirect:/cart";
             }
         }
-
-
         return "redirect:/cart";
-
     }
 
     @GetMapping("/dec/{productcode}")
@@ -155,9 +150,7 @@ public class CartController {
             }
         }
 
-
         return "redirect:/cart";
-
     }
 
 

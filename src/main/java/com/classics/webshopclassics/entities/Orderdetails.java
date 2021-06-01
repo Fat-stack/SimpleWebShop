@@ -3,7 +3,7 @@ package com.classics.webshopclassics.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import java.io.Serializable;
+
 
 @Entity
 @IdClass(OrderdetailsID.class)
@@ -59,14 +59,5 @@ public class Orderdetails {
     }
 
 
-    @Override
-    public String toString() {
-        return "Orderdetails{" +
-                "ordernumber=" + ordernumber +
-                ", productcode='" + productcode + '\'' +
-                ", quantityordered=" + quantityordered +
-                ", priceeach=" + priceeach +
-                ", orderlinenumber=" + orderlinenumber +
-                '}';
-    }
+
 }

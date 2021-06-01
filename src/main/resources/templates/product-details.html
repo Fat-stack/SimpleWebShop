@@ -15,9 +15,7 @@
 <div th:replace="fragments/fragments :: header"></div>
 <div th:replace="fragments/fragments :: nav"></div>
 <div>
-  <h1>
-    View: product-details.html | Model: Products
-  </h1>
+
 </div>
 <hr />
 <!-- PRODUCTS w IMG (9) -->
@@ -38,7 +36,7 @@
   <tbody>
 
   <tr th:each="prod : ${product}">
-    <td><img th:src="@{${'/img/cars/' + prod.productcode + '.png' }}" width="90px" ></td>
+    <td><img th:src="@{${'/img/cars/' + prod.productcode + '.png' }}" width="150px" ></td>
     <td th:text="${prod.productline}"></td>
     <td th:text="${prod.productdescription}" width="50%"></td>
 

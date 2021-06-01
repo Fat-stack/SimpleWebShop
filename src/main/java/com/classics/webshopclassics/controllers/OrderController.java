@@ -29,17 +29,17 @@ public class OrderController {
     public String createNewOrder(HttpServletRequest request,
                                  @ModelAttribute Orders orders,
                                  RedirectAttributes redirectAttributes){
-       System.out.println("ORDERCONTROLLER / CREATE NEW ORDER");
+                        System.out.println("ORDERCONTROLLER / CREATE NEW ORDER");
        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
        if (inputFlashMap != null) {
            Customers customers = (Customers) inputFlashMap.get("customers");
            System.out.println(customers.getCustomernumber());
 
-           // HÄMTA SISTA ORDERNUMRET OCH LÄGG PÅ ETT TILL NÄSTA ORDER
+                         // HÄMTA SISTA ORDERNUMRET OCH LÄGG PÅ ETT TILL NÄSTA ORDER
            List<Orders> lastOrderList = ordersRepository.findTop1ByOrderByOrdernumberDesc();
            Long nextOrderNumber = lastOrderList.get(0).getOrdernumber() + 1 ;
            System.out.println(nextOrderNumber);
-           //
+
 
 
            Date date = new Date();
@@ -61,22 +61,6 @@ public class OrderController {
            return "redirect:/home";
        }
    }
-
-
-/*
-        List<Orders> tempList = ordersRepository.findAll();
-        model.addAttribute("orders", tempList);
-        System.out.println("TEST IN SOME CONTROLLER");
-
-
-
-        return "test";
-    }
- */
-
-
-
-
 
 
 }

@@ -18,7 +18,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    /********************* FÖRSTASIDA ************************/
+
 
     @GetMapping("/home")
     public String viewFrontTop10(Model model){
@@ -28,7 +28,7 @@ public class ProductController {
         return "index";
     }
 
-    /********************* ALLA PRODUKTER FRPN DB************************/
+
 
     @GetMapping("/products")
     public String viewAllProducts(Model model){
@@ -38,17 +38,7 @@ public class ProductController {
         return "all-products";
     }
 
-    // Varukorg som visar max en produkt och möjligheten att öka/minska, samt gå vidare
-//    @GetMapping("/cart")
-//    public String showNewProductPage(Model model) {
-//        Products products = new Products();
-//        model.addAttribute("products", products);
-//        return "shopping-cart";
-//    }
 
-    /* PRODUKTSIDA - DETALJER
-     *  Vi behöver ordna så att vi efter anv dirigerats till detaljsidan inte dirigeras fel tillbaka
-     * */
     @GetMapping("/details/{productcode}")
     public ModelAndView showProductPage(@PathVariable(name = "productcode") String productCode) {
         ModelAndView modelAndView = new ModelAndView("product-details");
@@ -57,18 +47,6 @@ public class ProductController {
         System.out.println("productController/ (/details/{productcode})");
         return modelAndView;
     }
-
-    /* LÄGGA TILL I VARUKORG (broken)
-     * Vi behöver en funktion som lägger till varan i varukorgen men låter användaren stanna kvar på sidan
-     *
-    @GetMapping("/add/{productcode}")
-    public ModelAndView addToCart(@PathVariable(name = "productcode") String productcode) {
-        ModelAndView modelAndView = new ModelAndView("shopping-cartTEMP");
-        Product product = productRepository.findById(productcode).get();
-        modelAndView.addObject("product", product);
-        return modelAndView;
-    }
-*/
 
 
 }

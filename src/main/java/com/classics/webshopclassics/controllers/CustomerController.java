@@ -25,31 +25,11 @@ public class CustomerController {
     public String addNewCustomer(Model model) {
         Customers customers = new Customers();
         model.addAttribute("customers", customers);
-        System.out.println(" CustomerController / new");
         return "new-customer";
     }
 
-/*
-
-    @PostMapping(value = "/saveAndRegister")
-    public String saveCostumerAndPassCustNr(@ModelAttribute("costumers") Customers customers){
-        System.out.println("customerController / saveAndRegister");
-        customerRepository.save(customers);
 
 
-
-        //TEST
-        long ordNr = customers.getCustomernumber();
-
-        //TEST
-
-
-        return "redirect:/create-new-order/" +"{" + ordNr + "}";
-    }
-
- */
-
-    /***TEST AREA****/
     @PostMapping(value = "/saveAndRegister")
     public RedirectView PostRG(
             HttpServletRequest request,
@@ -58,31 +38,13 @@ public class CustomerController {
 
         redirectAttributes.addFlashAttribute("customers", customers);
 
-
-        System.out.println("customerController / saveAndRegister");
-
         customerRepository.save(customers);
 
+        //TRACKING
+        System.out.println("customerController / saveAndRegister");
         System.out.println(customers.getCustomernumber());
-    //TEST
+        //TRACKING
 
         return new RedirectView("/create-new-order", true);
-
-
-}
-
-
-    /***TEST AREA****/
-
-
-/*    @PostMapping(value = "/save")
-    public String saveCustomer(@Valid Customers customers, BindingResult result) {
-        if (result.hasErrors()){
-            return "new-customer";
-        }
-        customerRepository.save(customers);
-        return "redirect:/thank-you-page";
     }
-
- */
 }
