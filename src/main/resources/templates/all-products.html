@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+</head>
+<body>
+<div th:replace="fragments/fragments :: header"></div>
+<div th:replace="fragments/fragments :: nav"></div>
+
+<div>
+  <h1>
+    View: products.html | Model: Products
+  </h1>
+</div>
+<hr>
+
+<table>
+  <thead>
+  <tr>
+    <th>IMG</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="prod : ${product}">
+    <td><img th:src="@{${'/img/cars/' + prod.productcode + '.png' }}" width="50px"></td>
+    <td th:text="${prod.productname}">Name</td>
+    <td th:text="${prod.productline}">Line</td>
+    <td th:text="${prod.msrp}">Price</td>
+    <td>
+      <a th:href="@{'/add/' + ${prod.productcode}}" class="btn btn-primary font-size-small">Add To Cart</a>
+      &nbsp;&nbsp;&nbsp;
+      <a th:href="@{'/details/' + ${prod.productcode}}" class="btn btn-success font-size-small">Product Details</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<hr>
+
+
+<div th:replace="fragments/fragments :: footer"></div>
+</body>
+</html>

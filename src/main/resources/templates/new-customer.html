@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>New Customer</title>
+</head>
+<body>
+<div th:replace="fragments/fragments :: header"></div>
+<div th:replace="fragments/fragments :: nav"></div>
+<div>
+    <h1>
+        View: new-customer.html | Model: Customers
+    </h1>
+</div>
+<hr>
+
+
+<form action="#" th:action="@{/saveAndRegister}" th:object="${customers}" method="post">
+
+<table>
+
+    <tr>
+        <td>Name</td>
+       <td> <input type="text" th:field="*{customername}" ></td>
+    </tr>
+    <tr>
+        <td>FirstName</td>
+        <td> <input type="text" th:field="*{contactfirstname}" ></td>
+    </tr>
+    <tr>
+        <td>LastName</td>
+        <td> <input type="text" th:field="*{contactlastname}" ></td>
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td> <input type="text" th:field="*{phone}" ></td>
+    </tr>
+    <tr>
+        <td>AddressLine1</td>
+        <td> <input type="text" th:field="*{addressline1}" ></td>
+    </tr>
+    <tr>
+        <td>AddressLine2</td>
+        <td> <input type="text" th:field="*{addressline2}" ></td>
+    </tr>
+    <tr>
+        <td>city</td>
+        <td> <input type="text" th:field="*{city}" ></td>
+    </tr>
+    <tr>
+        <td>state</td>
+        <td> <input type="text" th:field="*{state}" ></td>
+    </tr>
+    <tr>
+        <td>postalCode</td>
+        <td> <input type="text" th:field="*{postalcode}" ></td>
+    </tr>
+    <tr>
+        <td>Country</td>
+        <td> <input type="text" th:field="*{country}" ></td>
+    </tr>
+
+    <tr>
+        <td>
+            <button type="submit" class="btn btn-warning font-size-small">Save</button>
+        </td>
+    </tr>
+
+</table>
+
+</form>
+<!---///////TEST//////--->
+
+
+
+<!---///////TEST//////--->
+<div th:replace="fragments/fragments :: footer"></div>
+</body>
+</html>
