@@ -3,11 +3,10 @@ package com.classics.webshopclassics.entities;
 
 import javax.persistence.*;
 
-@Entity(name = "product")
-@Table(name = "product")
+@Entity
 public class Product {
 
-    /********************* CONSTRUCTORS ************************/
+
     public Product(String productcode, String productname, String productline, String productscale, String productvendor, String productdescription, String quantityinstock, float buyprice, float msrp) {
         this.productcode = productcode;
         this.productname = productname;
@@ -26,7 +25,7 @@ public class Product {
     }
 
 
-    /********************* VARIABLES ************************/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String productcode;

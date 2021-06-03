@@ -7,9 +7,6 @@ import com.classics.webshopclassics.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +14,6 @@ import java.util.List;
 @Controller
 @SessionAttributes("shoppingCart")
 public class CartController {
-
-    private float totalPriceSum;
 
 
     private final ProductRepository productRepository;
@@ -30,28 +25,24 @@ public class CartController {
 
     /******** ADD PRODUCT TO CART******/
     @GetMapping(value= "/add/{productcode}")
-    public String addToCart(final Model model,
-                            @ModelAttribute ShoppingCart shoppingCart,
+    public String addToCart(@ModelAttribute ShoppingCart shoppingCart,
                             @PathVariable(name ="productcode") String productcode ) {
 
-        //NYTT
+
         Product product = productRepository.findById(productcode).get();
 
         System.out.println(shoppingCart==null);
 
         if(shoppingCart.getShoppingCartList() == null){
-            ShoppingCart cart = new ShoppingCart();
-            System.out.println("IF");
             List<Product> tempList = new ArrayList<>();
             product.setQuantity(product.getQuantity() + 1);
             tempList.add(product);
             shoppingCart.setShoppingCartList(tempList);
-            System.out.println("49" + shoppingCart.getShoppingCartList().toString());
+
 
 
             return "redirect:/products";
         }else {
-            System.out.println("ELSE");
             List<Product> tempList = shoppingCart.getShoppingCartList();
             for (Product item: tempList) {
 
@@ -67,7 +58,6 @@ public class CartController {
 
             product.setQuantity(1);
             tempList.add(product);
-            System.out.println(shoppingCart.getShoppingCartList().toString());
             shoppingCart.setShoppingCartList(tempList);
         }
 
@@ -76,50 +66,10 @@ public class CartController {
 
 
 
-        //NYTT
-    /*
-
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
-        Product product = productRepository.findById(productcode).get();
-
-        if (shoppingCart.getShoppingCartList() == null) {
-            List<Product> tempList = new ArrayList<>();
-            product.setQuantity(product.getQuantity() + 1);
-            tempList.add(product);
-            shoppingCart.setShoppingCartList(tempList);
-
-            return "redirect:/products";
-
-        } else {
-            List<Product> tempList = shoppingCart.getShoppingCartList();
-            for (Product item: tempList) {
-
-                if (item.getProductcode().equals(product.getProductcode())){
-
-                    item.setQuantity(item.getQuantity() + 1 );
-
-                    shoppingCart.setShoppingCartList(tempList);
-
-                    return "redirect:/products";
-                }
-            }
-
-        product.setQuantity(1);
-        tempList.add(product);
-        shoppingCart.setShoppingCartList(tempList);
-        }
-
-        return "redirect:/products";
-    }
-
-
-*/
-
-    //NYTT
     @GetMapping("/cart")
     public String ViewCart(@ModelAttribute ShoppingCart shoppingCart,
                            final Model model) {
-        totalPriceSum = 0;
+        float totalPriceSum = 0;
 
         System.out.println("TEST122");
 
@@ -155,7 +105,7 @@ public class CartController {
         model.addAttribute("totPrice", totalPriceSum);
         return "shoppingcart";
     }
-    //NYTT
+
 
 
 

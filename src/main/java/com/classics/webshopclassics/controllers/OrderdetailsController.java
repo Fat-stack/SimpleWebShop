@@ -1,7 +1,7 @@
 package com.classics.webshopclassics.controllers;
 
 
-import com.classics.webshopclassics.entities.Customers;
+
 import com.classics.webshopclassics.entities.Orderdetails;
 import com.classics.webshopclassics.entities.Orders;
 import com.classics.webshopclassics.entities.Product;
@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +36,6 @@ public class OrderdetailsController {
         Orders orders = (Orders) inputFlashMap.get("orders");
 
         System.out.println(orders.getOrdernumber());
-
-        // ta in shoppingcart rad för rad
 
         List<Product> tempList = shoppingCart.getShoppingCartList();
 
@@ -74,7 +70,7 @@ public class OrderdetailsController {
 
 
 
-    /************TEST MOT DB * *******************/
+// TEST MOT DB DEV...
 
     @GetMapping("/test")
     public String viewFrontTop10(Model model){
@@ -84,7 +80,7 @@ public class OrderdetailsController {
         return "test";
     }
 
-            /************TEST MOT DB * *******************/
+
 
 
 
