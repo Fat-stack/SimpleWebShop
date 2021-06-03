@@ -4,9 +4,9 @@ package com.classics.webshopclassics.models;
 import com.classics.webshopclassics.entities.Product;
 
 
-import java.io.IOException;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class ShoppingCart {
@@ -14,20 +14,20 @@ public class ShoppingCart {
 
     private List<Product> shoppingCartList;
 
-    private static ShoppingCart shoppingCart;
 
 
     // ------- CONSTRUCTORS -------
-    private ShoppingCart(){}
+    //NYTT
 
+
+
+    //NYTT
+   /*
+    private ShoppingCart(){}
+*/
     // ------- METHODS -------
 
-    public static ShoppingCart getInstance(){
-        if (shoppingCart == null){
-            shoppingCart = new ShoppingCart();
-        }
-        return shoppingCart;
-    }
+
 
 
     //Getters  N Setters
@@ -43,4 +43,13 @@ public class ShoppingCart {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "shoppingCartList=" + shoppingCartList +
+                '}';
+
+
+    }
 }

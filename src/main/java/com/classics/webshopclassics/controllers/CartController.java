@@ -6,8 +6,7 @@ import com.classics.webshopclassics.models.ShoppingCart;
 import com.classics.webshopclassics.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
@@ -16,6 +15,7 @@ import java.util.List;
 
 
 @Controller
+@SessionAttributes("shoppingCart")
 public class CartController {
 
     private float totalPriceSum;
@@ -30,7 +30,54 @@ public class CartController {
 
     /******** ADD PRODUCT TO CART******/
     @GetMapping(value= "/add/{productcode}")
-    public String addToCart(@PathVariable(name ="productcode") String productcode ) throws IOException, ClassNotFoundException {
+    public String addToCart(final Model model,
+                            @ModelAttribute ShoppingCart shoppingCart,
+                            @PathVariable(name ="productcode") String productcode ) {
+
+        //NYTT
+        Product product = productRepository.findById(productcode).get();
+
+        System.out.println(shoppingCart==null);
+
+        if(shoppingCart.getShoppingCartList() == null){
+            ShoppingCart cart = new ShoppingCart();
+            System.out.println("IF");
+            List<Product> tempList = new ArrayList<>();
+            product.setQuantity(product.getQuantity() + 1);
+            tempList.add(product);
+            shoppingCart.setShoppingCartList(tempList);
+            System.out.println("49" + shoppingCart.getShoppingCartList().toString());
+
+
+            return "redirect:/products";
+        }else {
+            System.out.println("ELSE");
+            List<Product> tempList = shoppingCart.getShoppingCartList();
+            for (Product item: tempList) {
+
+                if (item.getProductcode().equals(product.getProductcode())){
+
+                    item.setQuantity(item.getQuantity() + 1 );
+
+                    shoppingCart.setShoppingCartList(tempList);
+
+                    return "redirect:/products";
+                }
+            }
+
+            product.setQuantity(1);
+            tempList.add(product);
+            System.out.println(shoppingCart.getShoppingCartList().toString());
+            shoppingCart.setShoppingCartList(tempList);
+        }
+
+        return "redirect:/products";
+    }
+
+
+
+        //NYTT
+    /*
 
         ShoppingCart shoppingCart = ShoppingCart.getInstance();
         Product product = productRepository.findById(productcode).get();
@@ -66,59 +113,66 @@ public class CartController {
     }
 
 
+*/
 
-
-
-
+    //NYTT
     @GetMapping("/cart")
-    public String ViewCart(Model model) throws IOException, ClassNotFoundException {
+    public String ViewCart(@ModelAttribute ShoppingCart shoppingCart,
+                           final Model model) {
         totalPriceSum = 0;
 
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
+        System.out.println("TEST122");
+
 
         if (shoppingCart.getShoppingCartList() == null) {
+
+            System.out.println("TEST 126");
             List<Product> tempList = new ArrayList<>();
             shoppingCart.setShoppingCartList(tempList);
             return "redirect:/cart";
         }
         if (shoppingCart.getShoppingCartList().isEmpty()){
-
+            System.out.println("test132");
             String strEmpty =" Your Cart contains no Items";
             model.addAttribute("cartIsEmpty",strEmpty);
 
         }
         if (!(shoppingCart.getShoppingCartList().isEmpty())){
-
+            System.out.println("test138");
             String strNotEmpty =" Your Cart contains Items";
             model.addAttribute("cartIsNotEmpty",strNotEmpty);
 
         }
-
+        System.out.println("test143");
         List<Product> cartViewList= shoppingCart.getShoppingCartList();
         model.addAttribute("cart",cartViewList);
 
 
         for (Product cartItem : cartViewList) {
             totalPriceSum += (cartItem.getQuantity()*cartItem.getMsrp());
-            }
+        }
 
         model.addAttribute("totPrice", totalPriceSum);
         return "shoppingcart";
     }
+    //NYTT
+
+
 
 @GetMapping("/emtyCart")
-    public String EmptyCart() throws IOException, ClassNotFoundException {
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
-        List<Product> tempCart= shoppingCart.getShoppingCartList();
-        tempCart.clear();
-        shoppingCart.setShoppingCartList(tempCart);
+    public String EmptyCart(@ModelAttribute ShoppingCart shoppingCart){
+
+        List<Product> tempList= shoppingCart.getShoppingCartList();
+        tempList.clear();
+        shoppingCart.setShoppingCartList(tempList);
     return "redirect:/cart";
 }
 
 
     @GetMapping("/inc/{productcode}")
-    public String incQuantity(@PathVariable(name ="productcode") String productcode ) throws IOException, ClassNotFoundException {
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
+    public String incQuantity(@ModelAttribute ShoppingCart shoppingCart,
+                              @PathVariable(name ="productcode") String productcode ) {
+
 
         List<Product> tempList = shoppingCart.getShoppingCartList();
 
@@ -132,9 +186,11 @@ public class CartController {
         return "redirect:/cart";
     }
 
+
     @GetMapping("/dec/{productcode}")
-    public String decQuantity(@PathVariable(name ="productcode") String productcode ) throws IOException, ClassNotFoundException {
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
+    public String decQuantity(@ModelAttribute ShoppingCart shoppingCart,
+                              @PathVariable(name ="productcode") String productcode ){
+
 
         List<Product> tempList = shoppingCart.getShoppingCartList();
 
@@ -152,6 +208,15 @@ public class CartController {
 
         return "redirect:/cart";
     }
+
+
+    @ModelAttribute("shoppingCart")
+    public ShoppingCart shoppingCart() {
+        return new ShoppingCart();
+    }
+
+
+
 
 
 
