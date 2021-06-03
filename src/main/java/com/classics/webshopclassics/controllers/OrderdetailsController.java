@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("shoppingCart")
 public class OrderdetailsController {
     @Autowired
     private OrderdetailsRepository orderdetailsRepository;
@@ -27,7 +30,8 @@ public class OrderdetailsController {
 
     @GetMapping("/create-new-orderdetails")
     public String createNewOrderDetails(HttpServletRequest request,
-                                        @ModelAttribute Orderdetails orderdetails) throws IOException, ClassNotFoundException {
+                                        @ModelAttribute Orderdetails orderdetails,
+                                        @SessionAttribute ShoppingCart shoppingCart) {
         System.out.println("ORDERDETAILS / create-new-orderdetails");
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -36,7 +40,7 @@ public class OrderdetailsController {
         System.out.println(orders.getOrdernumber());
 
         // ta in shoppingcart rad för rad
-        ShoppingCart shoppingCart = ShoppingCart.getInstance();
+
         List<Product> tempList = shoppingCart.getShoppingCartList();
 
 

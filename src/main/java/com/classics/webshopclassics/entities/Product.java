@@ -123,6 +123,10 @@ public class Product {
         this.msrp = msrp;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productname='" + productname + '\'' +
+                '}';
+    }
 }
