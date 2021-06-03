@@ -31,10 +31,11 @@ public class CustomerController {
 
 
     @PostMapping(value = "/saveAndRegister")
-    public RedirectView PostRG(
+    public RedirectView SaveAndRegisterCustomer(
             HttpServletRequest request,
             @ModelAttribute Customers customers,
             RedirectAttributes redirectAttributes) {
+
 
         redirectAttributes.addFlashAttribute("customers", customers);
 

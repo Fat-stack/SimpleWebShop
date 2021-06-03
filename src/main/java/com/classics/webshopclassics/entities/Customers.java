@@ -6,22 +6,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+
 @Entity
 public class Customers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customernumber;
+
     private String customername;
+
+
     private String contactlastname;
+
+
     private String contactfirstname;
+
     private String phone;
+
     private String addressline1;
+
     private String addressline2;
+
     private String city;
+
     private String state;
+
     private String postalcode;
+
     private String country;
+
     private float creditlimit;
 
     public Long getCustomernumber() {
