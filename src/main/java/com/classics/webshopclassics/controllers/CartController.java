@@ -7,6 +7,8 @@ import com.classics.webshopclassics.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +104,12 @@ public class CartController {
             totalPriceSum += (cartItem.getQuantity()*cartItem.getMsrp());
         }
 
-        model.addAttribute("totPrice", totalPriceSum);
+        //
+        DecimalFormat df = new DecimalFormat("###.###");
+        //
+        System.out.println(df.format(totalPriceSum));
+
+        model.addAttribute("totPrice", df.format(totalPriceSum));
         return "shoppingcart";
     }
 
