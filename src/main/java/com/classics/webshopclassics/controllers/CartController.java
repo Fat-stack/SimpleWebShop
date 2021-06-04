@@ -85,16 +85,13 @@ public class CartController {
         }
         if (shoppingCart.getShoppingCartList().isEmpty()){
             System.out.println("test132");
-            String strEmpty =" Your Cart contains no Items";
+            String strEmpty = "The Shoppingcart is empty";
+            String strHidden = "hidden";
             model.addAttribute("cartIsEmpty",strEmpty);
+            model.addAttribute("hideWhenCartIsEmpty",strHidden);
 
         }
-        if (!(shoppingCart.getShoppingCartList().isEmpty())){
-            System.out.println("test138");
-            String strNotEmpty =" Your Cart contains Items";
-            model.addAttribute("cartIsNotEmpty",strNotEmpty);
 
-        }
         System.out.println("test143");
         List<Product> cartViewList= shoppingCart.getShoppingCartList();
         model.addAttribute("cart",cartViewList);

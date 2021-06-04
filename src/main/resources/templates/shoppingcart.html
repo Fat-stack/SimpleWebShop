@@ -13,11 +13,7 @@
 <body>
 <div th:replace="fragments/fragments :: header"></div>
 <div th:replace="fragments/fragments :: nav"></div>
-<div>
-  <h1>
-    View: cart.html | Model: Shoppingcaart
-  </h1>
-</div>
+
 <hr>
 
 
@@ -27,8 +23,11 @@
 <!---///////TEST//////--->
 <h1>Your Shoppingcart: </h1>
 
+<div>
+  <h3 th:text="${cartIsEmpty}" ></h3>
+</div>
 
-<table>
+<table th:hidden="${hideWhenCartIsEmpty}">
   <tr>
     <th>Product </th>
     <th> Name</th>
@@ -61,13 +60,10 @@
   </tr>
 
 </table>
+
 <div>
-  <h3 th:text="${cartIsEmpty}" ></h3>
-  <h3 th:text="${cartIsNotEmpty}" ></h3>
-</div>
-<div>
-  <a th:href="@{'/emtyCart'}" class="btn btn-danger font-size-small" >EMPTY CART</a>
-  <a th:href="@{'/new'}" class="btn btn-warning font-size-small" >Checkout</a>
+  <a th:href="@{'/emtyCart'}" class="btn btn-danger font-size-small" th:hidden="${hideWhenCartIsEmpty}"  >EMPTY CART</a>
+  <a th:href="@{'/new'}" class="btn btn-warning font-size-small" th:hidden="${hideWhenCartIsEmpty}" >Checkout</a>
 </div>
 
 

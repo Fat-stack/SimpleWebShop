@@ -1,10 +1,13 @@
 package com.classics.webshopclassics.entities;
 
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -17,23 +20,32 @@ public class Customers {
     private String customername;
 
 
+    @NotEmpty(message = "* Please provide a lastname")
     private String contactlastname;
 
-
+    @NotEmpty(message = "* Please provide a firstname")
     private String contactfirstname;
 
+
+    @NotEmpty(message = "* Please provide a phonenumber")
     private String phone;
 
+    @NotEmpty(message = "* Please provide a address")
     private String addressline1;
+
 
     private String addressline2;
 
+    @NotEmpty(message = "* Please provide city")
     private String city;
+
 
     private String state;
 
+
     private String postalcode;
 
+    @NotEmpty(message = "* Please provide a country")
     private String country;
 
     private float creditlimit;

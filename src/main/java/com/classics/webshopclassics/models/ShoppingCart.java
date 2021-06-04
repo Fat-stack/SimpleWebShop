@@ -2,30 +2,14 @@ package com.classics.webshopclassics.models;
 
 
 import com.classics.webshopclassics.entities.Product;
-
-
-
 import java.util.List;
-import java.util.Objects;
+
 
 
 public class ShoppingCart {
 
 
     private List<Product> shoppingCartList;
-
-
-
-    // ------- CONSTRUCTORS -------
-    //NYTT
-
-
-
-    //NYTT
-   /*
-    private ShoppingCart(){}
-*/
-    // ------- METHODS -------
 
 
 
