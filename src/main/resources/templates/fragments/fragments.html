@@ -43,8 +43,8 @@
 <table>
         <thead>
         <tr>
-                <th>IMG</th>
-                <th>Name</th>
+                <th></th>
+                <th class="mx-3">Name</th>
                 <th>Category</th>
                 <th>Price</th>
                 <th></th>
@@ -52,10 +52,10 @@
         </thead>
         <tbody>
         <tr th:each="prod : ${product}">
-                <td><img th:src="@{${'/img/cars/' + prod.productcode + '.png' }}" width="50px"></td>
-                <td th:text="${prod.productname}">Name</td>
-                <td th:text="${prod.productline}">Line</td>
-                <td th:text="${prod.msrp}">Pris</td>
+                <td><img th:src="@{${'/img/cars/' + prod.productcode + '.png' }}" width="50px" class="mx-3"></td>
+                <td th:text="${prod.productname}" class="mr-3"></td>
+                <td th:text="${prod.productline}" class="mx-3"></td>
+                <td th:text="${prod.msrp}" class="mx-3"></td>
                 <td>
                         <a th:href="@{'/add/' + ${prod.productcode}}" class="btn btn-primary font-size-small">Add To Cart</a>
                         &nbsp;&nbsp;&nbsp;
@@ -63,4 +63,6 @@
                 </td>
         </tr>
         </tbody>
+
 </table>
+
