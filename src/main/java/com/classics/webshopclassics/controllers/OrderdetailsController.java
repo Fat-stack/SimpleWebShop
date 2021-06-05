@@ -60,10 +60,15 @@ public class OrderdetailsController {
     }
 
     @GetMapping("/orderConfirmation")
-    public String orderConfirmation() {
+    public String orderConfirmAndEmptyCart(@ModelAttribute ShoppingCart shoppingCart) {
 
 
         System.out.println("ORDERCONFIRMATION");
+
+        List<Product> tempList= shoppingCart.getShoppingCartList();
+        tempList.clear();
+        shoppingCart.setShoppingCartList(tempList);
+        System.out.println("EMPTY");
         return "order-confirmation";
     }
 

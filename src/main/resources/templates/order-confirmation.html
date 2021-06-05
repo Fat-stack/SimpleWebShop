@@ -11,7 +11,7 @@
 <body>
 
 <div th:replace="fragments/fragments :: header"></div>
-<div th:replace="fragments/fragments :: nav"></div>
+
 
 
 <div>
@@ -24,7 +24,8 @@
 <p>Thank you.</p>
 <p>Your order has been registered properly and is now beeing processed.</p>
 
-<button> </button>
+<a th:href="@{'/'}" class="btn btn-success font-size-small"> Back to Webshop</a>
+
 
 <div th:replace="/fragments/fragments :: footer"></div>
 
