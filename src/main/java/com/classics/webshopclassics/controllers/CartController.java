@@ -24,8 +24,49 @@ public class CartController {
         this.productRepository = productRepository;
     }
 
+///////
 
-    /******** ADD PRODUCT TO CART******/
+    @GetMapping(value= "/addFromFirstPage/{productcode}")
+    public String addToCartFromfirstPage(@ModelAttribute ShoppingCart shoppingCart,
+                            @PathVariable(name ="productcode") String productcode ) {
+
+
+        Product product = productRepository.findById(productcode).get();
+
+        System.out.println(shoppingCart==null);
+
+        if(shoppingCart.getShoppingCartList() == null){
+            List<Product> tempList = new ArrayList<>();
+            product.setQuantity(product.getQuantity() + 1);
+            tempList.add(product);
+            shoppingCart.setShoppingCartList(tempList);
+
+
+
+            return "redirect:/";
+        }else {
+            List<Product> tempList = shoppingCart.getShoppingCartList();
+            for (Product item: tempList) {
+
+                if (item.getProductcode().equals(product.getProductcode())){
+
+                    item.setQuantity(item.getQuantity() + 1 );
+
+                    shoppingCart.setShoppingCartList(tempList);
+
+                    return "redirect:/";
+                }
+            }
+
+            product.setQuantity(1);
+            tempList.add(product);
+            shoppingCart.setShoppingCartList(tempList);
+        }
+
+        return "redirect:/";
+    }
+    /////////
+
     @GetMapping(value= "/add/{productcode}")
     public String addToCart(@ModelAttribute ShoppingCart shoppingCart,
                             @PathVariable(name ="productcode") String productcode ) {
@@ -65,6 +106,7 @@ public class CartController {
 
         return "redirect:/products";
     }
+
 
 
 

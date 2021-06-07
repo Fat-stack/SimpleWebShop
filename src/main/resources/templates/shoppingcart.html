@@ -4,13 +4,8 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:th="http://www.thymeleaf.org"
 >
-<head>
-  <meta charset="UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>cart.html</title>
-</head>
-<body>
+<div th:replace="fragments/fragments :: head"></div>
+<body class="text-center">
 <div th:replace="fragments/fragments :: header"></div>
 <div th:replace="fragments/fragments :: nav"></div>
 
@@ -50,20 +45,34 @@
 
 
   </tr>
-  <tr>
 
+  <tr>
     <td></td>
     <td></td>
-    <td align="right">Total Price:</td>&nbsp;&nbsp;&nbsp;&nbsp;
-    <td th:text="${totPrice}" class="text-bold"></td>
-    <td> </td>
+
+    <td align="right" class="mt-4">Total sum:</td>&nbsp;&nbsp;&nbsp;&nbsp;
+    <td th:text="${totPrice}" > </td>
+    <td align="left">$ </td>
   </tr>
 
 </table>
 
-<div>
-  <a th:href="@{'/emtyCart'}" class="btn btn-danger font-size-small" th:hidden="${hideWhenCartIsEmpty}"  >EMPTY CART</a>
-  <a th:href="@{'/new'}" class="btn btn-warning font-size-small" th:hidden="${hideWhenCartIsEmpty}" >Checkout</a>
+<div class="container">
+  <div class="row">
+    <div class="col justify-content-left">
+      <a th:href="@{'/emtyCart'}" class="btn btn-danger font-size-small" th:hidden="${hideWhenCartIsEmpty}"  >EMPTY CART</a>
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+
+    <div class="col">
+    <a th:href="@{'/new'}" class="btn btn-warning font-size-small" th:hidden="${hideWhenCartIsEmpty}" >Checkout</a>
+    </div>
+
+
+    <div class="col"></div>
+  </div>
 </div>
 
 

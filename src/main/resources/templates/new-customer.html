@@ -4,13 +4,9 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:th="http://www.thymeleaf.org"
 >
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>New Customer</title>
-</head>
-<body>
+<div th:replace="fragments/fragments :: head"></div>
+
+<body class="text-center">
 <div th:replace="fragments/fragments :: header"></div>
 <div th:replace="fragments/fragments :: nav"></div>
 <div>
@@ -20,86 +16,99 @@
 </div>
 <hr>
 
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
 
-<form action="#" th:action="@{/saveAndRegister}" th:object="${customers}" method="post">
+        <div class="col">
+    <form action="#" th:action="@{/saveAndRegister}" th:object="${customers}" method="post" class="mx-auto">
 
-<table>
+    <table>
 
-    <tr>
-        <td>Customer name</td>
-       <td> <input type="text" th:field="*{customername}" class="form-control" placeholder="Company name" autofocus="true"></td>
-    </tr>
-    <tr>
-        <td>Contact firstname</td>
-        <td> <input type="text" th:field="*{contactfirstname}" class="form-control" placeholder="First name(*)"></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('contactfirstname')}"
-            th:errors="*{contactfirstname}"
-        ></td>
-    </tr>
-    <tr>
-        <td>Contact lastname</td>
-        <td> <input type="text" th:field="*{contactlastname}" class="form-control" placeholder="Last name(*)"
-                ></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('contactlastname')}"
-            th:errors="*{contactlastname}"
-        ></td>
-    </tr>
-    <tr>
-        <td>Phone</td>
-        <td> <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone number(*)"></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('phone')}"
-            th:errors="*{phone}"
-        ></td>
-    </tr>
-    <tr>
-        <td>AddressLine1</td>
-        <td> <input type="text" th:field="*{addressline1}" class="form-control" placeholder="Address 1(*)"></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('addressline1')}"
-            th:errors="*{addressline1}"
-        ></td>
-    </tr>
-    <tr>
-        <td>AddressLine2</td>
-        <td> <input type="text" th:field="*{addressline2}" class="form-control" placeholder="Address 2" ></td>
-    </tr>
-    <tr>
-        <td>city</td>
-        <td> <input type="text" th:field="*{city}" class="form-control" placeholder="City(*)"></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('city')}"
-            th:errors="*{city}"
-        ></td>
-    </tr>
-    <tr>
-        <td>state</td>
-        <td> <input type="text" th:field="*{state}" class="form-control" placeholder="State" ></td>
-    </tr>
-    <tr>
-        <td>postalCode</td>
-        <td> <input type="text" th:field="*{postalcode}" class="form-control" placeholder="PostalCode" ></td>
-    </tr>
-    <tr>
-        <td>Country</td>
-        <td> <input type="text" th:field="*{country}" class="form-control" placeholder="Country(*)" ></td>
-        <td class="has-error"
-            th:if="${#fields.hasErrors('country')}"
-            th:errors="*{country}"
-        ></td>
-    </tr>
+        <tr>
+            <td>Customer name</td>
+           <td> <input type="text" th:field="*{customername}" class="form-control" placeholder="Company name" autofocus="true"></td>
+        </tr>
+        <tr>
+            <td>Contact firstname</td>
+            <td> <input type="text" th:field="*{contactfirstname}" class="form-control" placeholder="First name(*)"></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('contactfirstname')}"
+                th:errors="*{contactfirstname}"
+            ></td>
+        </tr>
+        <tr>
+            <td>Contact lastname</td>
+            <td> <input type="text" th:field="*{contactlastname}" class="form-control" placeholder="Last name(*)"
+                    ></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('contactlastname')}"
+                th:errors="*{contactlastname}"
+            ></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td> <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone number(*)"></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('phone')}"
+                th:errors="*{phone}"
+            ></td>
+        </tr>
+        <tr>
+            <td>AddressLine1</td>
+            <td> <input type="text" th:field="*{addressline1}" class="form-control" placeholder="Address 1(*)"></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('addressline1')}"
+                th:errors="*{addressline1}"
+            ></td>
+        </tr>
+        <tr>
+            <td>AddressLine2</td>
+            <td> <input type="text" th:field="*{addressline2}" class="form-control" placeholder="Address 2" ></td>
+        </tr>
+        <tr>
+            <td>city</td>
+            <td> <input type="text" th:field="*{city}" class="form-control" placeholder="City(*)"></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('city')}"
+                th:errors="*{city}"
+            ></td>
+        </tr>
+        <tr>
+            <td>state</td>
+            <td> <input type="text" th:field="*{state}" class="form-control" placeholder="State" ></td>
+        </tr>
+        <tr>
+            <td>postalCode</td>
+            <td> <input type="text" th:field="*{postalcode}" class="form-control" placeholder="PostalCode" ></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td> <input type="text" th:field="*{country}" class="form-control" placeholder="Country(*)" ></td>
+            <td class="has-error"
+                th:if="${#fields.hasErrors('country')}"
+                th:errors="*{country}"
+            ></td>
+        </tr>
 
-    <tr>
-        <td>
-            <button type="submit" class="btn btn-warning font-size-small">Save</button>
-        </td>
-    </tr>
+        <tr></tr>
 
-</table>
+        <tr>
 
-</form>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-warning font-size-small" width="100%">Save</button>
+            </td>
+        </tr>
+
+    </table>
+
+    </form>
+        </div>
+        <div class="col"></div>
+
+    </div>
+</div>
 <!---///////TEST//////--->
 
 
