@@ -36,7 +36,6 @@ public class CustomerController {
 
     @PostMapping(value = "/saveAndRegister")
     public RedirectView SaveAndRegisterCustomer(
-            HttpServletRequest request,
             @Valid @ModelAttribute Customers customers,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
@@ -52,7 +51,7 @@ public class CustomerController {
 
         //TRACKING
         System.out.println("customerController / saveAndRegister");
-        System.out.println(customers.getCustomernumber());
+        System.out.println("Cust Nr(CustController): " + customers.getCustomernumber());
         //TRACKING
 
         return new RedirectView("/create-new-order", true);

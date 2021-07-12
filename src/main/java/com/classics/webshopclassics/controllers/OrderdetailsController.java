@@ -35,7 +35,7 @@ public class OrderdetailsController {
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         Orders orders = (Orders) inputFlashMap.get("orders");
 
-        System.out.println(orders.getOrdernumber());
+        System.out.println("OrderNr(orderDetails): " + orders.getOrdernumber());
 
         List<Product> tempList = shoppingCart.getShoppingCartList();
 
@@ -68,7 +68,7 @@ public class OrderdetailsController {
         List<Product> tempList= shoppingCart.getShoppingCartList();
         tempList.clear();
         shoppingCart.setShoppingCartList(tempList);
-        System.out.println("EMPTY");
+        System.out.println("Cart is EMPTYed");
         return "order-confirmation";
     }
 

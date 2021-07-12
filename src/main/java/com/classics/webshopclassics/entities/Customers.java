@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Entity
+
 public class Customers {
 
     @Id

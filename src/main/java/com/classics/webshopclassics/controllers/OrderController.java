@@ -33,12 +33,13 @@ public class OrderController {
        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
        if (inputFlashMap != null) {
            Customers customers = (Customers) inputFlashMap.get("customers");
-           System.out.println(customers.getCustomernumber());
+           System.out.println("CustNr (orderController)" + customers.getCustomernumber());
 
                          // HÄMTA SISTA ORDERNUMRET OCH LÄGG PÅ ETT TILL NÄSTA ORDER
            List<Orders> lastOrderList = ordersRepository.findTop1ByOrderByOrdernumberDesc();
            Long nextOrderNumber = lastOrderList.get(0).getOrdernumber() + 1 ;
-           System.out.println(nextOrderNumber);
+           System.out.println("New OrderNr (OrderController) :" + nextOrderNumber);
+
 
 
 
